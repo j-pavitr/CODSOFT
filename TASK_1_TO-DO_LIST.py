@@ -1,25 +1,29 @@
-Mfile = "List.txt"
+# This is a simple command-line To-Do List application in Python.
 
-def load():
+
+
+Mfile = "List.txt"# File to store tasks
+
+def load():# Load tasks from the file
     try:
         with open(Mfile, "r") as f:
             return [line.strip() for line in f.readlines()]
     except FileNotFoundError:
-        return []
+        return []# If the file doesn't exist, return an empty list
 
-def save(tasks):
+def save(tasks):# Save tasks to the file
     with open(Mfile, "w") as f:
         for task in tasks:
             f.write(task + "\n")
 
-def add():
+def add():# Add a new task
     task = input("Enter task: ")
     tasks = load()
     tasks.append("[ ] " + task)
     save(tasks)
     print(" Task added.")
 
-def done():
+def done():# Mark a task as done
     tasks = load()
     if not tasks:
         print(" No tasks!")
@@ -37,7 +41,7 @@ def done():
     else:
         print(" Invalid number.")
 
-def delete():
+def delete():# Remove a task
     tasks = load()
     if not tasks:
         print(" No tasks!")
@@ -55,16 +59,16 @@ def delete():
     else:
         print(" Invalid number.")
 
-def show():
+def show():# Show all tasks
     tasks = load()
     if not tasks:
         print(" No tasks!")
     else:
         print(" Your Tasks:")
-        for i, task in enumerate(tasks, 1):
+        for i, task in enumerate(tasks, 1):# Enumerate to show task numbers
             print(f"{i}. {task}")
 
-def menu():
+def menu():#Main Menu
     while True:
         print("\n TO-DO LIST MENU")
         print("1. Show All")
@@ -90,3 +94,4 @@ def menu():
             print(" Invalid choice. Try again.")
 
 menu()
+
